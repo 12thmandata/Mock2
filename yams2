@@ -1,0 +1,18 @@
+trigger:
+- main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: AzureResourceManagerTemplateDeployment@3
+  inputs:
+    deploymentScope: 'Resource Group'
+    azureResourceManagerConnection: 'AzureServiceConnection'
+    subscriptionId: '4f1b9861-f872-4eaf-af1c-5b19a7ff9618'
+    action: 'Create Or Update Resource Group'
+    resourceGroupName: 'myResourceGroup'
+    location: 'eastus'
+    templateLocation: 'Linked artifact'
+    csmFile: 'templates/azuredeploy.json'
+    csmParametersFile: 'templates/azuredeploy.parameters.json'
