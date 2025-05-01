@@ -2,15 +2,19 @@ trigger:
 - main
 
 pool:
-  name: LocalAgentPool  # 🔁 Use your actual agent pool name
+  name: LocalAgentPool  # 👈 Make sure this matches your self-hosted agent pool name
 
 steps:
+- checkout: self  # 👈 Ensures the repo is cloned to _work/1/s
+
 - task: AzureCLI@2
+  displayName: 'Deploy Bicep Template'
   inputs:
-    azureSubscription: 'AzDevOp-DemoConnect'  # 🔁 Use your actual service connection name
+    azureSubscription: 'AzureSP-12thMan2'  # 👈 Use the exact name of your service connection
     scriptType: bash
     scriptLocation: inlineScript
     inlineScript: |
+      echo "Deploying Bicep template..."
       az deployment group create \
         --resource-group 12thMan2 \
         --template-file main.bicep \
