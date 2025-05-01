@@ -1,0 +1,20 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "vmName": {
+      "value": "ubuntuVM01"
+    },
+    "adminUsername": {
+      "value": "azureadmin"
+    },
+    "adminPassword": {
+      "reference": {
+        "keyVault": {
+          "id": "/subscriptions/4f1b9861-f872-4eaf-af1c-5b19a7ff9618/resourceGroups/12thMan2/providers/Microsoft.KeyVault/vaults/MySecureVault"
+        },
+        "secretName": "VmAdminPassword"
+      }
+    }
+  }
+}
